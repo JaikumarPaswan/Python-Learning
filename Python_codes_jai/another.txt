@@ -1,0 +1,1 @@
+I am writtingtwo time using .write will add the given contentthis will be added to the last

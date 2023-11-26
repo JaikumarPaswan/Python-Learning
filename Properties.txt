@@ -1,0 +1,28 @@
+List
+L= [1,2, "j"]
+1. Mutable
+2. stores differnent data-types
+3. random access (can access i'th item in list)
+4. Dynamic size
+
+Tuple
+T = (1,2,"k")
+1. Imutable
+2. Stores different data-types
+
+Dictionary
+d = {"key": value, 
+     "key2": Value2,
+     "key3": [1,2,3],
+     1: 2
+}
+1. Mutable
+
+Sets
+S = {1, 2, 3, 4, 2, 1, 5}
+1. Ignores repeated value
+2. Mutable
+
+#Important
+Using while loop, you needs to increment manually like i+=1, j+=1 while comparing two list
+Using for loop, you need range to increment
