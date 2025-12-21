@@ -1,0 +1,21 @@
+#Bubble Sort
+T.C: O(n^2)
+
+
+#Selection Sort
+T.C: O(n^2)
+Inplace algorithm
+Not stable (order of equal elements maya change)
+
+#Insertion Sort
+T.C: O(n^2) Worst case(when input array is reverse sorted)
+Inplace and stable
+Used in practice for small arrays
+O(n) in Best case(when input array is sorted)
+
+
+#Merge sorted
+T.C: Θ(nlogn) and Aux space: O(n)
+Stable 
+Well suited for Linked Lists. works in O(1) Aux space
+In general for arrays, Quicksort outperforms

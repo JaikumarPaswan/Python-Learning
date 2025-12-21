@@ -854,29 +854,577 @@
 
 
 
-def Count1(arr):
-    if arr[0]==1:
-        return len(arr)
+# def Count1(arr):
+#     if arr[0]==1:
+#         return len(arr)
     
-    low = 0
-    high = len(arr)-1
-    while low<=high:
-        mid = (low+high)//2
+#     low = 0
+#     high = len(arr)-1
+#     while low<=high:
+#         mid = (low+high)//2
 
-        if arr[mid]==0:
-            low = mid+1
-        if arr[mid]==1:
-            if arr[mid-1]==0:
-                return len(arr)-mid
-            else:
-                high = mid-1
-    return 0
+#         if arr[mid]==0:
+#             low = mid+1
+#         if arr[mid]==1:
+#             if arr[mid-1]==0:
+#                 return len(arr)-mid
+#             else:
+#                 high = mid-1
+#     return 0
     
 
-print(Count1([0,0,0,0,1,1,1]))
+# print(Count1([0,0,0,0,1,1,1,1,1]))
+
+
+# def findFloor(A,N,X):
+#     low=0
+#     high=N-1
+#     if A[N-1]>X and A[N-2]<X:
+#         return N-1
+#     while low<=high:
+#         mid=(low+high)//2
+#         if A[mid]<X:
+#             low=mid+1
+#         elif A[mid]>X:
+#             if A[mid-1]<X:
+#                 return mid
+#             else:
+#                 high=mid-1
+#     return -1
+
+
+# arr=[1,2,8,10,11,12,19]
+# N=7
+# x=9
+# print(findFloor(arr,N,x))
+
+
+
+# def search(arr, N, X):
+#         low=0
+#         high=N-1
+#         while low<=high:
+#             mid=(low+high)//2
+#             if arr[mid]==X:
+#                 return mid
+#             elif arr[mid]>X:
+#                 high=mid-1
+#             else:
+#                 low=mid+1
+#         return -1
+
+
+# print(search([1,3,5,6,7,8,9],7,7))
 
 
 
 
 
+# def duplicate(arr):
+#   for i in range(0,len(arr)-1):
+#     for j in range(1,len(arr)):
+#       if arr[i]==arr[j]:
+#         return True
+#   return False
 
+# print(duplicate([1,4,3,5,1]))
+
+
+# def duplicate(arr):
+#   arr.sort()
+#   for i in range(1,len(arr)):
+#     if arr[i-1]==arr[i]:
+#       return True
+#   return False
+    
+# print(duplicate([1,4,3,5]))
+
+
+# def duplicate(arr):
+#   return len(arr)!=len(set(arr))
+
+# print(duplicate([1,4,3,5,1]))
+
+# def anagram(s,t):
+#   s_count = {}
+#   t_count = {}
+
+#   for char in s:
+#     s_count[char] = s_count.get(char, 0)+1
+
+#   for char in t:
+#     t_count[char] = s_count.get(char, 0)+1
+
+#   return s_count==t_count
+
+# print(anagram("aacc", "ccac"))
+    
+
+# Input: nums = [1,1,1,2,2,3], k = 2
+# Output: [1,2]
+
+# def topk(nums, k):
+#     my_dict={}
+
+#     for i in range(len(nums)):
+#         my_dict[nums[i]] = my_dict.get(nums[i], 0)+1
+#     sorted_dict = dict(sorted(my_dict.items(), key=lambda item:item[1]))
+
+#     return list(sorted_dict.keys())[-k:]
+
+# print(topk([3,3,1,1,1,1,7,7,7,4,9,12], 2))
+
+
+# def topk(nums, k):
+#     my_dict = {}
+#     for number in nums:
+#         my_dict[number] = my_dict.get(number, 0)+1
+
+#     sorted_dict = dict(sorted(my_dict.items(), key=lambda item:item[1]))
+
+#     return list(sorted_dict.keys())[-k:]
+
+# print(topk([3,3,1,1,1,1,7,7,7,4,9,12], 2))
+
+
+# Input: strs = ["eat","tea","tan","ate","nat","bat"]
+# Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+# list = [3,3,1,1,1,1,7,7,7,4,9,12]
+# print(list[-6:-1])
+
+# import math
+# for i in range(math.floor(2.5)+1):
+#     print(i)
+
+
+# def countVowels(s):
+#     vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+#     seen = set()
+#     for char in s:
+#         if char in vowels:
+#             seen.add(char.lower())
+
+#     return len(seen)
+     
+        
+# print(countVowels("geeks"))
+
+# def reverseWord(str):
+#     r = ""
+#     for i in range(1, len(str)+1):
+#         r+=str[-i]
+#     return r
+        
+# print(reverseWord("geek"))
+
+# def isAnagram(a,b):
+#         dict1 ={}
+#         dict2 ={}
+#         for char in a:
+#             dict1[char] = dict1.get(char, 0)+1
+#         for char in b:
+#             dict2[char] = dict2.get(char, 0)+1
+        
+#         return dict1==dict2
+
+# print(isAnagram("geek", "kpee"))
+
+# def isPanagram(s):
+#     lower_char = s.lower()
+#     alphabets = set()
+
+#     for char in lower_char:
+#         alphabets.add(char)
+
+#     if len(alphabets) == 27:
+#         return 1
+#     else:
+#         return 0
+
+# s = "Thequickbrownfoxjumpsoverthelazydog"
+# print(isPanagram(s))
+
+
+# def validate(s):
+#     if len(s)<10:
+#         return 0
+    
+#     state = 0
+        
+#     for char in s:
+#         if char == char.upper():
+#             state+=1
+#             continue
+#         if char.isdecimal() == True:
+#             state +=1
+#             continue
+#         if char == char.lower():
+#             state +=1
+#             continue
+#         if char == "@" or char == "#" or char == "$" or char == "-" or char == "*":
+#             state+=1
+
+#     if state >= 4:
+#         return 1
+#     else:
+#         return 0
+
+
+# print(validate("eHello123@"))
+
+
+# def getSecondLargestElements(n,a):  
+#     a.sort()
+#     slar = a[-2]
+#     ssml = a[1]
+#     ans = [slar, ssml]
+#     return ans
+
+# print(getSecondLargestElements(5,[3,1,5,2,4]))
+
+
+# def fun(N, arr):
+#     i = 0
+#     j = N-1
+#     while i<j:
+#         while i<j and arr[i] != 0:
+#             i+=1
+#         while i<j and arr[j] == 0:
+#             j-=1
+#         arr[i], arr[j] = arr[j], arr[i]
+
+#         i+=1
+#         j-=1
+#     return arr
+
+# print(fun(8, [4,5,0,1,9,0,5,0]))
+
+
+
+# def fun(A, find_sum):
+#     res = 0
+#     for i in range(len(A)-1):
+#         for j in range(1, len(A)):
+#             New_Arr = A[i:j+1]
+#             if sum(New_Arr) == find_sum:
+#                 res += 1
+#     return res
+
+
+# print(fun([3,4,-7,1,3,3,1,-4], 7))
+
+
+# def fun(arr, k):
+#     i=0
+#     j= k
+#     while i<=len(arr)-k and j<=len(arr):
+#         print(max(arr[i:j]))
+#         i+=1
+#         j+=1
+
+
+# arr = [1,4,7,7,6,8]
+# k=3
+# print(fun(arr,k))
+
+# arr = list(map(int, input().split()))
+
+# print(arr)
+
+
+# def check(nums):
+#     for i in range(len(nums)-1):
+#         if nums[i]>nums[i+1]:
+#                 x = nums[i+1:len(nums)]
+#                 y = nums[0:i+1]
+
+#                 z = x+y
+#                 for j in range(len(z)-1):
+#                     if z[j]>z[j+1]:
+#                         return False
+                    
+#                 return True
+#     return True
+
+
+
+# print(check([2,1,3,4]))
+
+# def rotate(nums, k):
+#     l = len(nums)
+#     for i in range(k):
+#         nums.insert(0, nums[l-1])
+#         del nums[l]
+#     return nums
+
+
+# print(rotate([1,2,3,4,5,6,7], 3))
+
+
+# def twoSum(nums, target):
+#     d = {}
+#     for i in range(len(nums)):
+#         if target - nums[i] in d:
+#             return [d[target - nums[i]], i]
+#         d[nums[i]] = i
+#     return None
+
+
+
+# def merge(a, low, mid, high):
+#     left = a[low:mid+1]
+#     right = a[mid+1: high+1]
+
+#     i=0
+#     j=0
+#     k=low
+
+#     while i<len(left) and j<len(right):
+#         if left[i] <= right[j]: #Equal is used to maintain stability
+#             a[k] = left[i]
+
+#             k += 1
+#             i += 1
+#         else:
+#             a[k] = right[j]
+#             k += 1
+#             j += 1
+
+#     while i<len(left):
+#         a[k] = left[i]
+#         i+=1
+#         k+=1
+
+#     while j<len(right):
+#         a[k] = right[j]
+#         j+=1
+#         k+=1
+
+
+# def mergeSort(arr, l, r):
+#     if r>l:
+#         m = (l+r)//2
+#         mergeSort(arr, l, m)
+#         mergeSort(arr, m+1, r)
+#         merge(arr, l, m, r)
+
+
+# arr=[40,2,5,1,8,4,33]
+# l = 0
+# r = len(arr)-1
+
+# print(mergeSort(arr, l, r))
+# print(*arr)
+
+
+
+
+# def sortColors(nums):
+#         """
+#         Do not return anything, modify nums in-place instead.
+#         """
+#         def merge(a, low, mid, high):
+#             left = a[low:mid + 1]
+#             right = a[mid + 1:high + 1]
+
+#             i = 0
+#             j = 0
+#             k = low
+
+#             while i < len(left) and j < len(right):
+
+#                 if left[i] <= right[j]: #Equal is used to maintain stability
+#                     a[k] = left[i]
+
+#                     k += 1
+#                     i += 1
+#                 else:
+#                     a[k] = right[j]
+#                     k += 1
+#                     j += 1
+
+#             while i < len(left):
+#                 a[k] = left[i]
+#                 i += 1
+#                 k += 1
+
+#             while j < len(right):
+#                 a[k] = right[j]
+#                 j += 1
+#                 k += 1
+
+
+#         def mergeSort(arr, l, r):
+#             if r > l:
+#                 m = (r + l) // 2
+#                 mergeSort(arr, l, m)  #recursively call for left-half
+#                 mergeSort(arr, m + 1, r)  #recursively call for right-half
+#                 merge(arr, l, m, r)  #apply merge with sorting
+
+#         mergeSort(nums,0, len(nums)-1)
+
+#         return nums
+        
+
+# print(sortColors([50, 5, 30, 15, 7]))
+
+# def majority(nums):
+#     d={}
+
+#     for x in nums:
+#         if x in d:
+#             d[x]+=1
+#         else:
+#             d[x]=1
+    
+    
+#     return max(zip(d.values(), d.keys()))[1]
+
+# print(majority([1,2,4,2,3,2,3,2,3,2,2]))
+
+# my_dict = {2:3, 1:4, 5:1, 6:9, 4:3}
+
+# print(my_dict.get(5,0))
+
+
+# def fun(target, arr):
+#     d_tar = {}
+#     for x in target:
+#         if x in d_tar:
+#                 x += 1
+#         else:
+#                 d_tar[x] = 1
+
+#     d_arr = {}
+#     for x in arr:
+#         if x in d_arr:
+#                 x += 1
+#         else:
+#                 d_arr[x] = 1
+
+#     print(d_tar)
+#     print(d_arr)
+
+# print(fun([1,2,2,3], [1,1,2,3]))
+
+
+
+# def fun(arr1, arr2):
+#     a = set(arr1+arr2)
+#     res=[]
+#     for x in a:
+#         res.append(x)
+
+#     res.sort()
+#     return res
+
+
+# print(fun([2, 2, 3, 4, 5],[1, 1, 2, 3, 4]))
+
+
+# def missingNumber(nums):
+#         for x in range(len(nums)):
+#             if x not in nums:
+#                 return x
+
+# print(missingNumber([9,6,4,2,3,5,7,0,1]))
+
+
+# def nForest(n):
+#     for i in range(1, n+1):
+#         print("")  #This is used to iterate next iteration in next line, we can write this line to end of the inner-loop also
+#         for j in range(1,i+1):
+#             print(j, end=" ")
+
+# print(nForest(3))
+
+
+# def evenlyDivides (N):
+#         # code here
+#         s=str(N)
+#         count=0
+#         for i in range(len(s)):
+#             if N%int(s[i])==0:
+#                 count+=1
+         
+#         return count 
+
+# print(evenlyDivides(2446))
+
+
+
+# def reverse(x):
+#         res=""
+#         for i in range(len(str(x))):
+#             d = x%10
+#             res+=str(d)
+#             x= x//10
+#         return res
+
+# def reverse(x):
+#     res=0
+#     while x>0:
+#         d = x%10
+#         res = (res*10)+d
+#         x = x//10
+#     return res
+      
+
+
+# print(reverse(123))
+
+
+
+# class casual():
+#     def show_data(self):
+#         print(f"Welcome!!")
+
+
+# class OTTSub:
+#     def __init__(self, sub_id, plan, payment):
+#         self.sub_id = sub_id
+#         self.plan = plan
+#         self.pay = payment
+#     def show_data(self):
+#         print(f"Welcome, your subs_id is {self.sub_id}, and plan is {self.plan}")
+
+
+
+
+
+# class premium(OTTSub, casual):
+#     def __init__(self, sub_id, plan, payment, screens):
+#         super().__init__(sub_id, plan, payment)
+#         self.screens = screens
+
+#     def show(self):
+#         print(f"You have access to {self.screens}, Welcome!!")
+    
+
+# a = premium(11, "premium", 1000, 5)
+# a.show()
+# a.show_data()
+
+
+
+
+
+def maxProfit(prices):
+    max = 0
+   
+    for i in range(len(prices)-1):
+            for j in range(1, len(prices)):
+                if i>=j:
+                    continue
+                else:
+                    diff = prices[j] - prices[i]
+                    if diff > max:
+                        max = diff
+            
+    return max
+
+                
+prices = [7,1,5,3,6,4]
+
+print(maxProfit(prices))

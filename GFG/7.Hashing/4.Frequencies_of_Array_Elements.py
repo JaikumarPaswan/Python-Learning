@@ -20,16 +20,27 @@
 
 
 
-def countFreq(arr,n):
-    hmp=dict()
-    for i in range(n):
-        if arr[i] in hmp.keys():
-            hmp[arr[i]]+=1
-        else:
-            hmp[arr[i]]=1
+# def countFreq(arr,n):
+#     hmp=dict()
+#     for i in range(n):
+#         if arr[i] in hmp.keys():
+#             hmp[arr[i]]+=1
+#         else:
+#             hmp[arr[i]]=1
 
-    for x in hmp:
-        print(x," ",hmp[x])
+#     return hmp
+
+
+#More Easy
+def countFreq(arr, n):
+    counts = {}
+    for num in arr:
+        if num in counts:
+            counts[num] += 1
+        else:
+            counts[num] = 1
+
+    return counts
 
 
 

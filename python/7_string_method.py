@@ -1,12 +1,12 @@
 #string methods
 
-name = "JaI PaSwAn"
+name = "JaI paSwAn"
 
 #1. len() function
 length = len(name)
 print(length)
 
-#2. lowe() method
+#2. lower() method
 print(name.lower())
 
 #3. upper() method

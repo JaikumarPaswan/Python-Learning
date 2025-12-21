@@ -3,23 +3,23 @@
 
 # print(fun(3))
 
-def sum(n):
-    sum=0
-    for i in range(1, n+1):
-        sum = sum + i
+# def sum(n):
+#     sum=0
+#     for i in range(1, n+1):
+#         sum = sum + i
     
-    return sum
+#     return sum
 
-print(sum(3))
+# print(sum(3))
 
 
 
-def salary(day): #when every day your salary is doubled
-    pay = 1
-    for i in range(0,day):
-        pay = pay * 2
+# def salary(day): #when every day your salary is doubled
+#     pay = 1
+#     for i in range(0,day):
+#         pay = pay * 2
     
-    return pay
+#     return pay
 
-print(salary(30))
+# print(salary(30))
 

@@ -17,3 +17,4 @@ jai.salary = 100000
 jai.getSalary("Thanks!") #This is equals to Employee.getSalary(jai)
 jai.greet() #Employee.greet()
 jai.time()
+

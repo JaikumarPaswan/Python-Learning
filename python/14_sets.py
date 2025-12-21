@@ -2,6 +2,7 @@ a = {1,3,4,5,1}  #set is a collection of non-repetitive elements
 print(type(a))
 print(a)
 
+
 #Important:This syntax will create an empty
 #        dictionary and not an empty set
 a = {}
@@ -27,7 +28,11 @@ b.remove(5)
 
 print(b)
 
+#Use Case: Check a username is already taken or not
+print(11 in a)
 
 
-
+#l.append(68) #in list
+#l.insert(2, 34) #in list (index, element)
+#s.add(22) #in set
 

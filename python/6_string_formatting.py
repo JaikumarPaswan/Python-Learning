@@ -1,10 +1,10 @@
-# #string formatting (python3)
-# name = "Jai"
-# age = 18
-# #print("hello {} your age is {}".format(name, age))
+#string formatting (python3)
+name = "Jai"
+age = 18
+#print("hello {} your age is {}".format(name, age))
 
 
-# #python(3.6)
+#python(3.6)
 # print(f"hello {name} your age is {age}")
 
 # print(f"hello {name} your age is {age + 2}")  #you can also do calculations
@@ -23,12 +23,12 @@
 # print(language[-2])
 
 #string slicing
-#syntax- [start argument : stopargument-1]
+# syntax- [start argument : stopargument-1]
 
 lang="python"
 
-print(lang[2:5])
-print(lang[-3:4])
+# print(lang[2:5])
+# print(lang[-3:4])
 
 #step argument
 
@@ -36,6 +36,8 @@ print(lang[0:4:2])
 print(lang[0::2])
 print(lang[0:4:1])
 print(lang[5::-1])
+print(lang[::-1])
+print(lang[-1:-3:-1])
 
 #reverse order name
 name = input("Enter name")

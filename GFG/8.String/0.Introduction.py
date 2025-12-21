@@ -12,3 +12,9 @@ s = "geeks"
 
 # s[0] = "e"
 # print(s)
+
+
+#Access string elements, we can also access it using index
+a="apple"
+for i in a:
+    print(i)

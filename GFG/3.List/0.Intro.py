@@ -8,7 +8,7 @@ print(l[-1])
 l.append(30)
 print(l)
 
-#insert
+print("----insert----")
 l.insert(1, 15)
 print(l)
 
@@ -23,6 +23,7 @@ print(l.index(30, 4, 7)) # returns index of 30 between index 4 and 6(7-1)
 print("----remove()----")
 l.remove(20)
 print(l)
+
 
 print("pop")
 print(l.pop()) # pop also displays the value which get popped

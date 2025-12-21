@@ -1,3 +1,4 @@
+
 # #create a list using []
 # a = [1,2,4,56,6]
 
@@ -26,24 +27,34 @@
 # print(l1)
 # l1.sort() #sort the list
 # print(l1)
+# l1[4] = 98 #changing a value in list
+# print(l1)
+
+# print(l1.reverse())
+# print(l1)
 # l1.reverse() #reverse the list
 # print(l1)
 # l1.append(93) #adds at the end of the list
 # print(l1)
-# l1.insert(0,544) #inserts 544 at index 1 of list
+# l1.insert(0,544) #inserts 544 at 0th index  of list
 # print(l1)
-# l1.pop(2) #removes element the list
+# l1.pop(2) #removes index element of the list
 # print(l1)
-# l1.remove(43) #removes 43 from the list
+# l1.remove(32) #removes 43 from the list
 # print(l1)
 
-
-
+# #copy of list
+# l2 = l1.copy()
+# print(l2)
+# l2.reverse()
+# print(l2)
 
 #Tuples
 
 #creating a tuple using ()
 t = (1,2,4,5,1,1,1)
+
+print(t)
 
 #Printing the elements of a tuple
 print(t[0])

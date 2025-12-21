@@ -3,7 +3,7 @@
 # i = 1
 # while i<=10:
 #     print("hello world")  #print HW 10 times
-#     i = i+1
+#     i=i+1
 
 
 # total=0  #sum of 1-10
@@ -62,8 +62,8 @@
 #   print("hello world")
 #   print(f"hello world : {i}\n")
 
-#   for i in range(1,11):
-#       print(f"hello world : {i}")
+# for i in range(1,11):
+#     print(f"hello world : {i}")
 
 
 
@@ -79,6 +79,6 @@ n=int(input("enter the number:"))
 total =0
 for i in range(1,n+1):
     total += i
-    print(total)
+print(total)
 
 

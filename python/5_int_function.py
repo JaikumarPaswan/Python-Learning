@@ -1,4 +1,4 @@
-number_one = int(input("enter first name"))  #{int will treat string value as an integer}
+number_one = int(input("enter first number"))  #{int will treat string value as an integer}
 number_two = int(input("enter second number"))
 total = number_one + number_two
 print("total is " +total)
@@ -9,5 +9,5 @@ number3 = int("33")
 print(number1 + number2)
 
 
-
+    
 

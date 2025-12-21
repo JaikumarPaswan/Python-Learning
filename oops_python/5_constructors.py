@@ -1,7 +1,7 @@
 class Employee:
     company = "Google"
 
-    def __init__(self, name, salary, subunit):   
+    def __init__(self, name, salary, subunit):   #A Python class can only have one __init__ function defined at a time. If multiple __init__ methods are defined within a single class, the latest one in the code will override all the previous definitions, and only that last definition will be used when an object is instantiated
         self.name = name
         self.salary = salary
         self.subunit = subunit
@@ -27,3 +27,8 @@ jai = Employee("jai", 100, "YouTube")
 jai.getDetails()  #instance.function()
 
 
+
+#The __init__ method in Python is a special method that is automatically called when a new instance of a class is created.
+
+#__init__: Used to initialize a newly created object. It's typically used to set initial values for instance attributes.
+#Regular Methods: Used to define the behavior of an object and can be called on an instance to perform operations.

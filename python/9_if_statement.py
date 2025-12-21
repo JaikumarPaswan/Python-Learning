@@ -4,10 +4,10 @@
 #        print("you are above 14")
 
 
-# #  #pass statement
-# #  x = 18
-# #  if x > 18:
-# #      pass
+#  #pass statement
+# x = 18
+# if x > 18:
+#     pass
 
 
 # #else statement
@@ -85,10 +85,10 @@
 #     print("string is empty")    
 
 
-name = input("enter your name")
+# name = input("enter your name")
 
-if name:   # true if string is not empty
-    print(f"Your name is {name}")
-else:
-    print("You did'nt type anything")  
+# if name:   # true if string is not empty
+#     print(f"Your name is {name}")
+# else:
+#     print("You did'nt type anything")  
 

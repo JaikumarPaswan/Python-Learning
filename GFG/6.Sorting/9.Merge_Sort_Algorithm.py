@@ -11,7 +11,7 @@ def merge(a, low, mid, high):
 
     while i < len(left) and j < len(right):
 
-        if left[i] < right[j]:
+        if left[i] <= right[j]: #Equal is used to maintain stability
             a[k] = left[i]
 
             k += 1
@@ -40,7 +40,7 @@ def mergeSort(arr, l, r):
         merge(arr, l, m, r)  #apply merge with sorting
 
 
-arr = [10, 5, 30, 15, 7]
+arr = [50, 5, 30, 15, 7]
 
 mergeSort(arr, 0, 4)
-print(*arr)
+print(arr)

@@ -49,7 +49,7 @@ def getSecMax(l):
         if x> lar:
             slar = lar
             lar = x
-        elif x!= lar:
+        elif x< lar:
             if slar == None or slar < x:
                 slar = x
 
