@@ -17,4 +17,7 @@ def fact(n):
 
     return res
 
-print(fact(5)) 
+print(fact()) 
+
+
+##In case of 0, 2 is already greater than 1, Python cannot move forward from 2 to reach 1, therefore loop never runs and res=1

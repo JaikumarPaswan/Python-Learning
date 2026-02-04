@@ -1,17 +1,14 @@
 def isPal(n):
     string = str(n)
-    if len(string) == 1:
-        print("yes")
-    else:
-        for i in range(len(string)//2):
-            start = string[i] 
-            end = string[len(string)-1-i]
-        if (start == end):
-            print("yes")
-        else:
+    for i in range(len(string)//2):
+        if string[i] != string[len(string)-1-i]:
             print("No")
+            return
+    print("Yes")
 
-    return 
+    
+        
+    
 
 print(isPal(789987))
 
@@ -27,4 +24,6 @@ print(isPal(789987))
 #     return rev == n
 
 # print(isPal(4554))
+
+
 

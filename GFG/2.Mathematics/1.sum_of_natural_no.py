@@ -23,3 +23,14 @@
 
 # print(salary(30))
 
+
+# def salary(day):
+#     salary = 1
+#     if day==1:
+#         return salary
+#     else:
+#         for i in range(2, day+1):
+#             salary = salary*2
+#     return salary
+
+# print(salary(31))

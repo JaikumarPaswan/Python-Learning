@@ -25,15 +25,16 @@ l.remove(20)
 print(l)
 
 
-print("pop")
+print("----pop----")
 print(l.pop()) # pop also displays the value which get popped
                # pop only used to remove one value, or the last value, 
                # where del can be used to remove one value and many[0:2...]
+print(l)
 print(l.pop(2)) # pop by index
 
 print(l)
 
-print("del") # del can be used to delete one as well as many value 
+print("----del----") # del can be used to delete one as well as many value 
 del l[1]
 print(l)
 
@@ -44,19 +45,19 @@ l1 =[10, 40, 20, 50]
 
 print(l1)
 
-print("max")
+print("----max----")
 print(max(l1))
 
-print("reverse")
+print("----reverse----")
 l1.reverse()
 print(l1)
 
-print("sort")
-l1.sort
+print("----sort----")
+l1.sort()
 print(l1)
 
 
-# -----Reverse-----
+print("-----Reverse-----")
 l = [10, 20, 30, 40, 50]
 print(l)
 

@@ -18,7 +18,7 @@ print(first_student.average())
 
 
 
-#The __init__ method in Python is a special method that is automatically called when a new instance of a class is created.
+#The __init__ method in Python is a special method that is automatically called when a new object/instance of a class is created.
 
 #__init__: Used to initialize a newly created object. It's typically used to set initial values for instance attributes.
 #Regular Methods: Used to define the behavior of an object and can be called on an instance to perform operations.

@@ -3,7 +3,7 @@ class Node:
     self.key = key
     self.next = None
 
-def printList(head):
+def printList(head): #Takes 'head' as an argument
   curr = head
   while curr!=None:
     print(curr.key, end=" ")

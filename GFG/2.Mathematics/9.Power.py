@@ -12,3 +12,6 @@ def power1(x,n):
     return x**n
 
 print(power1(2,3))
+
+
+    

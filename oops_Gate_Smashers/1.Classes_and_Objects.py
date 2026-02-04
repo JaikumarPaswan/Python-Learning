@@ -9,7 +9,7 @@ class employee:
         print("Employee name:",self.name)
         print("Employee saary:",self.salary)
 
-a = employee()     #object
+a = employee()     #object/instance
 a.putdata()
 a.display()
 
@@ -17,3 +17,4 @@ a.display()
 
 
 
+#Whenever we create an object from a class, 'self' refers to the current object instance. It is essential for accessing attributes and methods within the class.

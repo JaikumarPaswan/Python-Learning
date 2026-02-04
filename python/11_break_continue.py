@@ -30,6 +30,13 @@
 # print(total)
 
 
+#The break statement in Python is a loop control statement used to immediately terminate the execution of the current loop (either a for or while loop) 
+#and transfer control to the next line of code after the loop. It is often used within an if condition to exit the loop when a specific condition is met
+
+for i in range(0,10):
+    print(i)
+    if i==5:
+        break
 
 
 

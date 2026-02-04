@@ -1,17 +1,18 @@
-# def rd(l):
-#     unique_list = []
+def rd(l):
+    unique_list = []
     
-#     # Iterate over the list indices using the range function
-#     for i in range(len(l)):
-#         # Check if the current element is not already in the unique list
-#         if l[i] not in unique_list:
-#             unique_list.append(l[i])
+    # Iterate over the list indices using the range function
+    for i in range(len(l)):
+        # Check if the current element is not already in the unique list
+        if l[i] not in unique_list:
+            unique_list.append(l[i])
     
-#     return unique_list
+    return unique_list
 
 
-# l = [10,10,10,20,40]
-# print(rd(l))
+l = [10,10,10,20,40]
+print(rd(l))
+
 
 
 # def remove_duplicates(sorted_list):

@@ -1410,21 +1410,24 @@
 
 
 
-def maxProfit(prices):
-    max = 0
+# def maxProfit(prices):
+#     max = 0
    
-    for i in range(len(prices)-1):
-            for j in range(1, len(prices)):
-                if i>=j:
-                    continue
-                else:
-                    diff = prices[j] - prices[i]
-                    if diff > max:
-                        max = diff
+#     for i in range(len(prices)-1):
+#             for j in range(1, len(prices)):
+#                 if i>=j:
+#                     continue
+#                 else:
+#                     diff = prices[j] - prices[i]
+#                     if diff > max:
+#                         max = diff
             
-    return max
+#     return max
 
                 
-prices = [7,1,5,3,6,4]
+# prices = [7,1,5,3,6,4]
 
-print(maxProfit(prices))
+# print(maxProfit(prices))
+
+
+

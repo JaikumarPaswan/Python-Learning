@@ -1,3 +1,2 @@
-name = "jai"
-for i in name:
-    print(i)
+j6 = "ok"
+print(j6)

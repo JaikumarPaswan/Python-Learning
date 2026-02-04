@@ -41,4 +41,4 @@ print(lang[-1:-3:-1])
 
 #reverse order name
 name = input("Enter name")
-print(f"reverse order of your name is {name[-1::-1]}")
+print(f"reverse order of your name is {name[::-1]}")

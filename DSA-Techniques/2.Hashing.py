@@ -48,11 +48,12 @@ print(results)
 #---------------
 #Find key by providing value
 
-my_dict = {'a': 1, 'b': 2, 'c': 3}
+# my_dict = {'a': 1, 'b': 2, 'c': 3}
 
-value_to_find = 2
+# value_to_find = 2
 
-for k, v in my_dict.items():
-    if v == value_to_find:
-        print(k)
-        break
+# for k, v in my_dict.items():
+#     if v == value_to_find:
+#         print(k)
+#         break
+

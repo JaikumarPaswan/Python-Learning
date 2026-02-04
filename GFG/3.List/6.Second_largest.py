@@ -1,4 +1,4 @@
-# TC -> θ(n)
+# # TC -> θ(n)
 # def getmax(l):
 #     res = l[0]
 #     for i in range(1, len(l)):
@@ -38,7 +38,7 @@
 # print(getSecMax(l))
 
 
-#Efficient sloution(one traversal)
+# Efficient sloution(one traversal)
 def getSecMax(l):
     if len(l)<2:
         return None

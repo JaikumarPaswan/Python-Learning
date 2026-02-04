@@ -23,4 +23,4 @@ def isPrime(n):
     
     return True
 
-print(isPrime(33))
+print(isPrime(3))

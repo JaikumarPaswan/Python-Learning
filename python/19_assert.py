@@ -13,3 +13,4 @@ try:
     print("This number is even")
 except AssertionError:                    # the AssertionError in the except block is used to catch and handle the specific error raised by the assert, if any different kind of error is raised like valueError or indexError then it will return an error, If we don't write AssertionError, it will still work same as our written code can provide 
     print("Please enter even number")
+

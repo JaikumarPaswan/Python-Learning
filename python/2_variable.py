@@ -17,3 +17,11 @@ print("Hello " + name + "your age is " + age)
 
 x=y=z=1
 print(x+y+z)
+
+#| Type      | Where it is defined   | Where it is used      |
+#| --------- | --------------------- | --------------------- |
+#| Local     | Inside a function     | Only in that function |
+#| Global    | Outside all functions | Anywhere              |
+#| Non-local | In outer function     | In nested function    |
+
+#Variables are names for values, 4 basic data types which are: Integer, Float, String & Boolean.
