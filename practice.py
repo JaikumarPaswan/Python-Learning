@@ -1425,10 +1425,10 @@
 #     return max
 
                 
-# prices = [7,1,5,3,6,4]
+arr = [7,1,5,3,6,4]
 
 # print(maxProfit(prices))
 
+print(*sorted(arr))
 
 
-print(type({1,}))
