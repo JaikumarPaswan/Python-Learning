@@ -45,3 +45,5 @@ print(fun(8, [4,5,0,1,9,0,5,0]))
 # pushZerosToEnd(arr, n) 
 # print("Array after pushing all zeros to end of array:") 
 # print(arr) 
+
+
