@@ -12,6 +12,13 @@
 # Output Format:
 # Print N space-separated integers representing the rank of each element in the original array order.
 
+#Sample Input
+#7
+#1 5 8 15 8 25 9
+
+#sample Output
+#1 2 3 5 3 6 4
+
 # Constraints:
 # 1 <= N <= 10 ^ 5
 # - 10 ^ 9 <= arr[i] <= 10 ^ 9
@@ -20,7 +27,16 @@ N = int(input().strip())
 
 arr = list(map(int, input().split()))
 
-print(arr)
 
-arr.sort()
-print(arr)
+
+rank_map={}
+rank=1
+for num in sorted(arr):
+    if num not in rank_map:
+        rank_map[num]=rank
+        rank+=1
+print(rank_map)
+
+
+for x in arr:
+    print(rank_map[x], end=" ")
