@@ -15,9 +15,8 @@ for i in range(len(arr)):
         break
     
 for j in range(i+1, len(arr)):  #[we can use range(first+1, len(arr)) also]
-    if arr[j]!=target:
-        break
-    else:
+    if arr[j]==target:
         last=j
+        
 
 print(first, last)

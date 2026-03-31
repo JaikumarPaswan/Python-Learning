@@ -1,3 +1,5 @@
 arr = list(map(int, input().split()))
 
 print("array: ",arr)
+
+

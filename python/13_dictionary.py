@@ -12,6 +12,11 @@ print(myDict["Marks"])
 # print(myDict["anotherdict"]["virat"])
 # # print(myDict.items())  #prints keys, values for all the content of the dictionary
 
+
+for k, value in myDict.items():
+    print(value)
+
+
 # updateDict={
 #     "Lovish" :  "friend"
 # }

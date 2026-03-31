@@ -1425,10 +1425,33 @@
 #     return max
 
                 
-arr = [7,1,5,3,6,4]
+# arr = [7,1,5,3,6,4]
 
 # print(maxProfit(prices))
 
-print(*sorted(arr))
+
+
+# a = [10, 20]
+# b = [20, 30]
+
+# count=0
+
+# for i in range(len(b)):
+#     if b[i] in a:
+#         if b[i] not in b[0:i]:
+#             count+=1
+
+# print(count)
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -51,7 +51,7 @@ class TATA(Car):
 
 maruti = Maruti()
 maruti.wheel() 
-maruti.speed() #All abstract methods needs to be implemented otherwisewe will get error output 
+maruti.speed() #All abstract methods needs to be implemented otherwise we will get error output 
 maruti.color()
 
 
@@ -59,3 +59,18 @@ tata = TATA()
 tata.wheel()
 tata.speed()
 tata.color()
+
+
+
+
+
+
+# @abstractmethod:
+# Doesn’t hide data directly ❌
+# Forces a common interface ✔
+# Helps hide how things are done ✔
+
+# 🧠 One-line answer (interview)
+# @abstractmethod doesn’t directly hide data, but it helps achieve abstraction 
+# by defining a method without implementation, so users only see what to use, 
+# not how it works.
