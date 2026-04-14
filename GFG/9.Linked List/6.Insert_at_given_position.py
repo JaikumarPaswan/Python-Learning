@@ -11,12 +11,12 @@ def insertPos(head, pos, data):
         return temp
     
     curr = head
-    for i in range(pos-2):
+    for i in range(pos-2):  #finding the node whose next node will be 'data'
         curr = curr.next
         if curr == None:
             return head
     
-    temp.next = curr.next
+    temp.next = curr.next  #Do this step first otherwise, we will loose the rest of LinkedList
     curr.next = temp
     return head
 

@@ -1444,14 +1444,13 @@
 # print(count)
 
 
+class Node:
+    def __init__(self, k):
+        self.key = k
+        self.next = None
 
 
+def insert(head, x):
+    pass
 
-
-
-
-
-
-
-
-
+print(abs(9/2))

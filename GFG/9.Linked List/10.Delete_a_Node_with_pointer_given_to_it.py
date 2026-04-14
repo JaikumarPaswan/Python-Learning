@@ -1,20 +1,20 @@
 class Node:
     def __init__(self, k):
-        self.data = k
+        self.key = k
         self.next = None
 
 def printList(head):
     curr = head
     while curr != None:
-        print(curr.data, end=" ")
+        print(curr.key, end=" ")
         curr = curr.next
     print()
 
 
     
-def deleteNode(ptr):
+def deleteNode(ptr): #It deletes a node without having access to the head. It works by copying next node’s data and skipping it
     temp = ptr.next
-    ptr.data = temp.data
+    ptr.key = temp.key
     ptr.next = temp.next
 
 

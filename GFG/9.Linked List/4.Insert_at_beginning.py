@@ -22,5 +22,5 @@ head = insertBegin(head , 10)
 head = insertBegin(head, 20)
 head = insertBegin(head, 30)
 
-print(printLL(head))
+printLL(head)
 

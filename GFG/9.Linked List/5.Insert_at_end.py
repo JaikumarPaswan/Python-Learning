@@ -19,7 +19,7 @@ def printLL(head):
         print(curr.key, end =" ")
         curr = curr.next
 
- 
+
 head = None
 head = insertEnd(head, 10)
 head = insertEnd(head, 20)
