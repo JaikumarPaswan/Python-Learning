@@ -1444,13 +1444,86 @@
 # print(count)
 
 
-class Node:
-    def __init__(self, k):
-        self.key = k
-        self.next = None
+import sys
+from collections import defaultdict
+
+sys.setrecursionlimit(300000)
+input = sys.stdin.readline
+
+def main():
+    n = int(input())
+    
+    adj = defaultdict(list)
+    for i in range(n - 1):
+        u=map(int, input().split())
+        v=map(int, input().split())
+        w= map(int, input().split())
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+    
+    def dfs(node, parent, my_turn):
+        kids = [(c, wt) for c, wt in adj[node] if c != parent]
+        
+        if not kids:
+            return 0  # leaf, game over
+        
+        best = None
+        for c, wt in kids:
+            below = dfs(c, node, not my_turn)
+            score = wt + below if my_turn else -wt + below
+            
+            if best is None:
+                best = score
+            elif my_turn and score > best:
+                best = score
+            elif not my_turn and score < best:
+                best = score
+        
+        return best
+    
+    print(dfs(1, -1, True))
+
+main()
 
 
-def insert(head, x):
-    pass
 
-print(abs(9/2))
+import sys
+from collections import defaultdict
+
+sys.setrecursionlimit(300000)
+input = sys.stdin.readline
+
+def main():
+    n = int(input())
+
+    adj = defaultdict(list)
+    for i in range(n - 1):
+        
+        u = map(int, input().split())
+        v = map(int, input().split())
+        w = map(int, input().split())
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+
+def dfs(node, parent, my_turn):
+    kids = [(c, wt) for c, wt in adj[node] if c != parent]
+
+    if not kids:
+        return 0 # leaf, game over
+
+    best = None
+    for c, wt in kids:
+        below = dfs(c, node, not my_turn)
+        score = wt + below if my_turn else -wt + below
+
+        if best is None:
+            best = score
+        elif my_turn and score > best:
+            best = score
+        elif not my_turn and score < best:
+             best = score
+        return best
+
+print(dfs(1, -1, True))
+
+main()

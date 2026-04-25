@@ -27,8 +27,16 @@
 # print(l1)
 # l1.sort() #sort the list
 # print(l1)
+# #⭐ Sort in reverse
+# l1.sort(reverse=True)
+# print(l1)
 # l1[4] = 98 #changing a value in list
 # print(l1)
+
+#⭐sort array according to second element of pair
+arr=[(12,3), (4,7), (2,8), (11,4)]
+arr.sort(key=lambda x:x[1])
+print(arr)
 
 # print(l1.reverse())
 # print(l1)

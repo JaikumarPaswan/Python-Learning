@@ -135,33 +135,15 @@
 # print(chr(65))
 
 
+def maxResult(number, digit):
+    ans=[]
 
-# count=0
-# n="111011110111110"
-# ans=""
-# for i in range(len(n)):
-#     if n[i]=="1":
-#         count+=1
-#     else:
-#         ans=ans+chr(65+count)
-#         count=0
-# print(ans)
-    
-class Node:
-    def __init__(self, k):
-        self.key=k
-        self.next=None
+    for i in range(len(number)):
+        if number[i]==digit:
+            t = number[0:i] + number[i+1:len(number)]
+            ans.append(t)
+    return max(ans)
 
-def printList(H):
-    current=H
-    while current!=None:
-        print(current.key)
-        current=current.next
+  
 
-head=Node(10)
-head.next=Node(20)
-head.next.next=Node(30)
-
-printList(head)
-
-
+print(maxResult("123", "3"))
