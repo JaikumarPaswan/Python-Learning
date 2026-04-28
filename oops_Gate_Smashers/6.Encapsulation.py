@@ -58,6 +58,25 @@ print(s1.get_age())
 #The members of a class that are declared public are easily 
 # accessible from any part of the program. All data members 
 # and member functions of a class are public by default. 
+# Eg. A class can access the variable of another Class
+
+# class Class1:
+#     def __init__(self):
+#         self.x = 10
+#         self.y = 20
+
+# class Class2:
+#     def __init__(self):
+#         self.obj = Class1()
+
+#     def show(self):
+#         print(self.obj.x)
+#         print(self.obj.y)
+
+# c = Class2()
+# c.show()   #10 20
+
+
 
 #Protected Access Modifier:
 #The members of a class that are declared protected are only 

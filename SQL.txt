@@ -1,0 +1,794 @@
+#If no connection found
+1)Go to services -> mysql80 -> start service -> (if no option available then go to propertties of mysql80-> startup type->automatic)
+
+password:-rootroot
+
+#SQL is generally not case-sensitive for its core syntax and keywords, but its behavior regarding table names, column names, and data values varies significantly depending on the specific database management system (DBMS) and its configuration.
+#Except column names, keywords, the value in rows(varchar) are case-sensitive for some query (eg. in 'Replace' its case-sensitive [select replace(name, 'Jai', 'vijay') from client;] but in here [select * from client where name='jai';] its not case sensitive❗
+
+#CHAR: Stores fixed-length data and always uses the full specified size, so it is best for values with constant length like PIN codes or country codes. eg:Name char(50) and value stored is 'jai', so it in memory it actually stores it as  'jai     ' --> padded-space/white-space for space not used, which wastes memory
+
+#VARCHAR: Stores variable-length data and uses only the required space, so it is ideal for names, emails, addresses, and other varying text values.  eg:Name varchar(50) and value stored is 'jai', so in memory also it's stored as  'jai'. only 3 bytes are used + 1 byte for metadata 
+
+0] CREATE DATABASE database-name;
+   USE database-name;
+
+
+[1] Create table
+CREATE TABLE customer
+(
+    ID int8 PRIMARY KEY,
+    NAME varchar(50) NOT NULL,
+    Age int NOT NULL,
+    City varchar(50)
+);
+0
+
+#The command DESC (short for DESCRIBE) is used in SQL to display the structure of a specific table, including its column names, data types, and constraints.
+
+DESC customer;
+
+[2] Insert into table
+
+INSERT INTO customer
+(ID, NAME, Age, City, salary)                                                                                                               
+VALUES 
+(1, 'Sam', 24, 'Delhi', 5000),
+(2, 'Ram', 36, 'Mumbai', 11000),
+(3, 'Jai', 21, 'Thane', 6000),
+(4, 'Raj', 40, 'pune', 10000);
+
+
+[3] Update rows of a table 
+
+UPDATE customer 
+SET NAME = 'xam' WHERE ID = 4; 
+
+#Update Multiple rows
+
+UPDATE client
+SET amount = CASE
+    WHEN id = 1 THEN 1200
+    WHEN id = 2 THEN 1500
+    WHEN id = 3 THEN 1800
+END,
+mode = CASE
+    WHEN id = 1 THEN 'UPI'
+    WHEN id = 2 THEN 'Cash'
+    WHEN id = 3 THEN 'Card'
+END
+WHERE id IN (1,2,3); #➡️very important because if we dont provide this end line then 
+it will make rest every other value null if data is present there, this line says 
+to only touch rows with id(1, 2, 3).
+
+
+[4] Delete a row of a table
+
+DELETE FROM customer 
+WHERE "ID" = 3;
+
+
+[5] ALTER TABLE syntax (for COLUMN - 3)
+
+    i) Add new Column
+
+    ALTER TABLE customer 
+    ADD COLUMN gender varchar(50);
+
+
+    ii) Delete a Column
+
+      ALTER TABLE customer
+      DROP COLUMN gender;
+
+
+    iii) Change data-type of a Column
+       
+        ALTER TABLE customer
+        MODIFY COLUMN Age numeric;
+
+        ALTER TABLE customer
+        MODIFY COLUMN Mode varchar(50);
+
+
+[6] DROP AND TRUNCATE
+
+    i) TRUNCATE TABLE is used to delete all rows(all the data inside a table, but not the table itself)
+
+     TRUNCATE TABLE customer;
+
+    ii) DROP TABLE used to delete Table from database
+
+     DROP TABLE customer;
+
+[7] SELECT Statement
+
+     i) Select All
+      
+      SELECT * FROM cust;
+
+     ii) Select a column, or multiple column
+        
+       SELECT custid, name, FROM cust;
+
+     iii) Select distinct values in a column
+
+        SELECT DISTINCT address FROM cust;
+
+
+[8] WHERE Clause  (used to put conditions Only on SELECT statement)
+
+    i)
+    SELECT custname FROM cust 
+    WHERE address='mumbai';
+
+
+    ii)Using OPERATORS 
+
+    SELECT custname FROM cust 
+    WHERE address = 'mumbai' AND salary > 15000;
+
+    iii) This give all the details in that row
+
+    SELECT * FROM cust 
+    WHERE address = 'mumbai' AND salary > 15000;
+
+
+[9] ORDER BY Clause (used for ASC and DESC)
+
+    SELECT * FROM cust
+    ORDER BY custname ASC;
+
+[10] LIMIT Clause (shows limited number of rows)
+
+    SELECT * FROM cust
+    LIMIT 2;
+
+    Q]Find 3rd highest amount
+
+    select amount from customer order by amount desc limit 1 offset 2;
+
+    # 1 → count (return only 1 row)
+
+    # 2 → offset (skip first 2 rows)
+
+
+    [One more way but above method is modern way and used mostly. In MySQL, the LIMIT clause can take two numbers: select amount from customer order by amount desc limit 2, 1; ( 2 ->offset, 1 ->count)
+
+[11]Copy a csv file into sql 
+
+First make a table with same column-names of that csv
+( customer table is created ),  ps- make sure file security is set to 'everyone' [https://www.commandprompt.com/education/how-to-fix-permission-denied-error-while-importing-a-csv-file-in-postgresql/]
+
+COPY customer(customer_id, first_name, last_name, email, address_id)  
+FROM 'C:\Users\paswa\OneDrive\Documents\SQL\customer.csv' 
+DELIMITER ',' 
+CSV HEADER;
+
+
+[12] String Functions [UPPER(), LOWER(), LENGTH(), SUBSTRING(), NOW(), FORMAT(), CONCAT(),          
+                       REPLACE(), TRIM()]
+
+    i) UPPER()
+
+    SELECT UPPER(first_name) FROM customer;
+
+   ii) LENGTH()
+
+    SELECT LENGTH(first_name), first_name FROM customer;
+
+   iii) SUBSTRING()
+
+    SELECT SUBSTRING(first_name, 1, 3), first_name FROM customer;
+
+   iv) CONCAT()
+
+    SELECT CONCAT(first_name, last_name), first_name, last_name FROM customer;
+                                            ⬆️          ⬆️ --> used for comparison only
+
+   v) REPLACE()
+
+    i)SELECT REPLACE(first_name, 'Mary', 'Mohan'), first_name FROM customer;  #This does not replace actually
+
+    ii)REPLACE INTO student (id, name, age, city)
+VALUES (1, 'Jai', 24, 'Kalyan');   #This replaces actually[What MySQL actually does
+
+If id = 1 does not exist
+➡ It behaves like INSERT
+
+If id = 1 already exists
+➡ MySQL:
+i)Deletes the old row
+
+ii)Inserts the new row]
+
+
+#Better option is 'DUPLICATE'
+
+    INSERT INTO student (id, name, age, city)
+      VALUES (1, 'Jai', 24, 'Kalyan')
+    ON DUPLICATE KEY UPDATE
+    age = 24,
+    city = 'Kalyan';
+
+
+[13] Aggregate Functions [COUNT(), SUM(), AVG(), MAX(), MIN(), ROUND()]
+
+    ⭐SELECT COUNT(*) FROM your_table;
+      (simple query that returns the total number of rows in a table.)
+
+
+    i)COUNT()   #gives total number of rows 
+
+    SELECT COUNT(amount) FROM payment;
+
+   ii)SUM()
+
+    SELECT SUM(amount) FROM payment;
+
+    iii)MAX()
+
+    SELECT MAX(amount) FROM payment;
+
+
+    iv) AVG()
+
+    SELECT AVG(amount) FROM payment;
+
+
+    v)ROUND()  #give value upto 2 decimal place
+
+    SELECT ROUND(AVG(amount), 2) FROM payment;
+ 
+
+[14] GROUP BY  #can only group items which can actualy be grouped(like mode in payment)
+The GROUP BY statement is used to group rows that have the same values into summary rows, like "Find the number of customers in each country".
+The GROUP BY statement is almost always used in conjunction with aggregate functions, like COUNT(), MAX(), MIN(), SUM(), AVG(), to perform calculations on each group.
+⭐Group by jiska lagana hota hai SELECT ke just bad usi ko likha jata hai.
+
+SELECT mode, SUM(amount) as TOTAL
+FROM payment                 ⬆️ --> Temporary Column is created 
+GROUP BY mode;                       for query
+
+
+  i)ORDER BY 
+
+    SELECT mode, SUM(amount) as TOTAL
+    FROM payment
+    GROUP BY mode
+    ORDER BY TOTAL DESC;
+
+
+[15] HAVING Clause  (used to put conditions only on GROUP BY).
+The HAVING clause in SQL is used to filter the results of a GROUP BY query based on aggregate functions. It acts as a "WHERE clause for groups," allowing you to set conditions on summarized data such as totals, averages, or counts.
+
+SELECT mode, SUM(amount) as TOTAL
+FROM payment
+GROUP BY mode
+HAVING SUM(amount)>=100
+ORDER BY TOTAL ASC;
+
+
+[16] TIMESTAMP
+
+SHOW TIMEZONE
+SELECT NOW()  #Shows everythimg
+SELECT TIMEOFDAY()
+SELECT CURRENT_TIME
+SELECT CURRENT_DATE
+
+
+[17] EXTRACT Function  ( YEAR, QUATER )
+      #'YYYY-MM-DD'
+
+
+   i)#below code extracts year and store it into a temporary column
+
+    SELECT EXTRACT(YEAR FROM payment_date) AS pay_year,payment_date
+    FROM payment;
+
+   ii) EXTRACT DOW (day-of-week)
+
+    SELECT EXTRACT(DOW FROM payment_date) AS pay_dow,payment_date
+    FROM payment;
+
+
+[18] JOINS
+
+Supported Types of Joins in MySQL: Inner Join, Left Join, Right Join, Cross Join, Self Join
+   
+     SELECT * FROM TABLE A JOIN TABLEB ON TABLEA.column_name = TABLEB.column_name
+
+i) INNER JOIN
+Returns only the common(matching values) in both tables 
+
+SELECT * FROM customer AS c INNER JOIN pay_short AS p 
+ON c.customer_id = p.customer_id; [writting just JOIN will also do]
+
+-->we can skip writting 'AS c'
+
+SELECT * FROM customer INNER JOIN pay_short ON 
+customer.customer_id = pay_short.customer_id
+
+#⭐to view mentioned columns column
+
+SELECT c.first_name, p.amount, p.mode 
+FROM customer AS c INNER JOIN pay_short AS p 
+ON c.customer_id = p.customer_id;
+
+
+ii) LEFT JOIN
+Returns all records from the left table, and the matched records from the right table
+
+ SELECT *  
+ FROM pay_short AS p LEFT JOIN customer AS c 
+ ON c.customer_id = p.customer_id;
+
+
+iii) RIGHT JOIN
+Returns all records from the right table, and the matched records from the left table
+
+
+  SELECT * 
+  FROM customer AS c RIGHT JOIN pay_short AS p 
+  ON c.customer_id = p.customer_id;
+
+
+iv) FULL OUTER JOIN
+
+Returns all record from both table
+
+  SELECT * 
+  FROM customer AS c
+  FULL OUTER JOIN pay_short AS p 
+  ON c.customer_id = p.customer_id;
+
+iv) #In MYSQL there is no 'FULL OUTER JOIN' rather it has 'CROSS JOIN' which returns cartesian product of rows of both table
+  
+  select * from customer as c cross join cust as d;   
+
+  select * from customer cross join cust;     #both this code will work same
+  
+
+
+[19] SELF Join 
+It is a regulaar join in which a table is joined to itself
+It compares values in a column of rows with same table
+
+Q) Return manager 
+Find the name of repesctive managers for each of employees? Table--> emp
+
+
+SELECT T2.empname AS manager, T1.empname AS employee_name FROM emp AS T1
+JOIN emp AS T2 ON
+T1.empid = T2.manager_id;
+
+  
+* T2.empname gives the name of manager as it keeps manager_id on left and returns empnames whose empid is similar to manager_id
+
+
+
+[20]
+    i) UNION
+It is used to combine/concatinate the results of two or more SELECT statements without any duplicate rows. This operator allows you to merge the results of two or more SELECT statements into a single result set, eliminating duplicate rows by default.
+#Rule:- 1.Same number of columns selected and expressions
+2.Same data type and in same order
+
+
+    SELECT * FROM payment 
+    UNION
+    SELECT * FROM pay_short ORDER BY customer_id ASC;
+
+  ii) UNION ALL (returns duplicates also)
+
+    SELECT * FROM payment 
+    UNION ALL
+    SELECT * FROM pay_short ORDER BY customer_id ASC;
+
+
+
+[21] SUB QUERY    -->Approach-- 1. First write the inner query
+                                2. write outer query and place the inner query
+
+A Subquery or inner query or a Nested query allows us to create query or the output of another query
+# Sub query syntax involves two SELECT statements
+
+ 1.Q) Return details of customers whose payment is more than the average of all the payments
+
+  SELECT * FROM payment WHERE amount > (SELECT AVG(amount) FROM payment);
+                                              
+ 2)IN operator #Below code shows representation of IN operator(here it alternate way to perform as JOIN)
+
+  SELECT * FROM pay_short WHERE customer_id IN
+  (SELECT customer_id FROM customer)
+
+
+ 3)EXIST Operator  (alternate for join)
+The EXISTS operator is used in a WHERE clause to check whether a subquery returns any rows.
+The EXISTS operator evaluates to TRUE if the subquery returns at least one row, and FALSE otherwise..
+
+SELECT first_name, last_name 
+FROM customer c
+WHERE EXISTS ( SELECT customer_id, amount
+               FROM payment p
+	       WHERE p.customer_id = c.customer_id
+	       AND amount > 50)
+
+
+
+[22] WINDOW FUNCTION
+
+> Window functions applies aggregate, ranking and analytic functions over a particular window(set of rows)
+> OVER clause is used with windows functions to define that window.
+> "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING" is used to give a single output based on all INPUT Values/PARTITION(if used)
+
+
+
+# Syntax
+
+SELECT column_names,
+        fun() OVER([<PARTITION BY Clause>]
+                   [<ORDER BY Clause>]
+                   [<ROW or RANGE Clause>])
+FROM table_name
+
+
+I) Aggregate Functions
+
+
+*Partition by is used on new_cat
+
+1) Without "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+
+SELECT new_id, new_cat,
+SUM(new_id) OVER(PARTITION BY new_cat ORDER BY new_id) AS "Total",
+AVG(new_id) OVER(PARTITION BY new_cat ORDER BY new_id) AS "Average",
+COUNT(new_id) OVER(PARTITION BY new_cat ORDER BY new_id) AS "Count",
+MIN(new_id) OVER(PARTITION BY new_cat ORDER BY new_id) AS "Min",
+MAX(new_id) OVER(PARTITION BY new_cat ORDER BY new_id) AS "MAX"
+FROM test_data
+
+new_id  new_cat    Total  Average               Count   Min     Max
+100	"Agni"	   100	  100.0000000000000000	1	100	100
+200	"Agni"	   300	  150.0000000000000000	2	100	200
+500	"Dharti"   500	  500.0000000000000000	1	500	500
+700	"Dharti"   1200	  600.0000000000000000	2	500	700
+200	"Vayu"	   200	  200.0000000000000000	1	200	200
+300	"Vayu"	   500	  250.0000000000000000	2	200	300
+500	"Vayu"	   1000	  333.3333333333333333	3	200	500
+
+
+2) with "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+
+SELECT new_id, new_cat,
+SUM(new_id) OVER(PARTITION BY new_cat ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Total",
+AVG(new_id) OVER(PARTITION BY new_cat ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Average",
+COUNT(new_id) OVER(PARTITION BY new_cat ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Count",
+MIN(new_id) OVER(PARTITION BY new_cat ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Min",
+MAX(new_id) OVER(PARTITION BY new_cat ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "MAX"
+FROM test_data
+
+new_id  new_cat    Total   Average              Count   Min     Max
+100	"Agni"	   300	   150.0000000000000000	2	100	200
+200	"Agni"	   300	   150.0000000000000000	2	100	200
+500	"Dharti"   1200	   600.0000000000000000 2	500	700
+700	"Dharti"   1200	   600.0000000000000000	2	500	700
+200	"Vayu"	   1000	   333.3333333333333333	3	200	500
+300	"Vayu"	   1000	   333.3333333333333333	3	200	500
+500	"Vayu"	   1000	   333.3333333333333333	3	200	500
+
+
+3)Without PARTITION BY 
+
+SELECT new_id, new_cat,
+SUM(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Total",
+AVG(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Average",
+COUNT(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Count",
+MIN(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Min",
+MAX(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "MAX"
+FROM test_data
+
+
+new_id  new_cat   Total   Average               Count   Min     Max
+100	"Agni"	  2500 	 357.1428571428571429	7	100	700
+200	"Agni"	  2500	 357.1428571428571429	7	100	700
+200	"Vayu"	  2500	 357.1428571428571429	7	100	700
+300	"Vayu"	  2500	 357.1428571428571429	7	100	700
+500	"Vayu"	  2500	 357.1428571428571429	7	100	700
+500	"Dharti"  2500	 357.1428571428571429	7	100	700
+700	"Dharti"  2500	 357.1428571428571429	7	100	700
+
+
+
+II) Ranking Function
+
+SELECT new_id,
+ROW_NUMBER() OVER(ORDER BY new_id) AS "ROW_NUMBER",
+RANK() OVER(ORDER BY new_id) AS "RANK",
+DENSE_RANK() OVER(ORDER BY new_id) AS "DENSE_RANK",
+PERCENT_RANK() OVER(ORDER BY new_id) AS "PERCENT_RANK"
+FROM test_data
+
+
+100	1	1	1	0
+200	2	2	2	0.16666666666666666
+200	3	2	2	0.16666666666666666
+300	4	4	3	0.5
+500	5	5	4	0.6666666666666666
+500	6	5	4	0.6666666666666666
+700	7	7	5	1
+
+
+
+III) Analytic Function
+
+1) Without "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+
+
+SELECT new_id,
+FIRST_VALUE(new_id) OVER(ORDER BY new_id) AS "FIRST_VALUE",
+LAST_VALUE(new_id) OVER(ORDER BY new_id) AS "LAST_VALUE",
+LEAD(new_id) OVER(ORDER BY new_id) AS "LEAD",
+LAG(new_id) OVER(ORDER BY new_id) AS "LAG"
+FROM test_data
+
+new_id  FIRST_VALUE  LAST_VALUE  LEAD   LAG
+100	100	     100	 200    [null]	
+200	100	     200	 200	100
+200	100	     200	 300	200
+300	100	     300	 500	200
+500	100	     500	 500	300
+500	100	     500	 700	500
+700	100	     700        [null]	500
+
+
+
+2) With "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+
+
+SELECT new_id,
+FIRST_VALUE(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "FIRST_VALUE",
+LAST_VALUE(new_id) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "LAST_VALUE",
+LEAD(new_id, 2) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "LEAD",   #LEAD(new_id, 2)if we wnat to lead by 2
+LAG(new_id, 2) OVER(ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "LAG"
+FROM test_data
+
+
+new_id  FIRST_VALUE  LAST_VALUE  LEAD   LAG
+100	100	     700	 200    [null]
+200	100	     700	 200	100
+200	100	     700	 300	200
+300	100	     700	 500	200
+500	100	     700	 500	300
+500	100	     700	 700	500
+700	100	     700        [null]	500
+
+
+
+
+[23] I) CASE Statement Syntax
+
+SELECT Columns
+CASE
+  WHEN condition 1 THEN result1
+  WHEN condition 2 THEN result2
+  WHEN condition 3 THEN result3
+  ELSE other_result
+END;
+FROM Table_Name
+
+
+#implementation
+
+SELECT customer_id, amount,
+CASE
+    WHEN amount > 100 THEN 'Expensive Product'
+	WHEN amount = 100 THEN 'Moderate Product'
+	ELSE 'Inexpensive Product'
+END AS ProductStatus
+FROM payment
+
+
+
+
+II) CASE Expression Syntax
+
+SELECT columns,
+CASE Expression
+  WHEN value1 THEN result1
+  WHEN value2 THEN result2
+  WHEN valueN then resultN
+  ELSE other_result
+END;
+
+
+#implementation
+
+SELECT customer_id, amount,
+CASE amount
+    WHEN 90 THEN 'Prime Customer'
+	WHEN 80 THEN 'Plus Customer'
+	ELSE 'Regular Customer'
+END AS CustomerStatus
+FROM payment
+
+[24] Common Table Expression (CTE)
+A Common Table Expression (CTE) is a temporary named result set that you can reference within a SQL statement.
+It allows you to create a named query that can be used multiple times within a larger SQL statement, making complex 
+queries more readable, modular, and efficient.
+
+#Syntax
+
+WITH cte AS(
+   SELECT a,b,c FROM Table1)
+
+SELECT a,c FROM cte
+
+
+#implementation
+
+WITH my_cte AS (
+    SELECT *, AVG(amount) OVER (ORDER BY p.customer_id) AS "Average_Price",
+	COUNT(address_id) OVER(ORDER BY c.customer_id) AS "Count"
+	FROM payment as p
+	INNER JOIN customer AS c
+	ON p.customer_id = c.customer_id
+)
+
+SELECT first_name, last_name
+FROM my_cte
+
+
+
+
+
+25] Keys: A key in DBMS is an attribute or set of attributes that uniquely identifies records in a database table and enforces referential integrity
+
+Super Keys: Super is like a super set, its set of one or more attributes (columns) that can uniquely identify a tuple (record)/row. All other are derieved from superkey.
+eg: emp_id can alone be a super key and emp_id with aadhaar number can also be a super key
+
+Eg: With a table having columns--> ID Name SSN Salary Phone Email, super keys can be:
+{ID}, {SSN}, {ID,Name}, {ID,Phone},{Name, SSN, Phone}, {Name, Email}, {IS, SSN, Phone}.....  
+
+Candidate Keys: Minimal super keys are called candidate keys. 
+Eg:{ID}, {SSN}, {Name, Phone}, {Email}. No column is repeated in forming a new candidate key. That's how candidate key is derieved from super key-->'Minimal'
+
+Primary key: Unique and Not Null , can be a column or a group of columns. Primary key is chosen from candidate key, as a candidate key can uniquely identify a row, it can accept Null Values also and as a Primary key cannot be null, we choose a key which is unique, not null and requirement by data-base-admin.
+
+Alternate Key: The candidate keys other than primary key is alternate key
+
+Unique key: Unique and Not null. Eg. {ID}, {SSN}, {Name, Phone} although phone can be null but with name together, it unique so its also a unique key.
+
+Composite key: key containing more than one attribute is composite key. eg: {ID, name}, {Name, Phone}
+
+Foreign Key: A key which is a primary key in some another table is Foreign key.
+
+
+
+
+25] Normalization
+Normal forms are a set of progressive rules (or design checkpoints) for relational schemas that reduce redundancy and prevent data anomalies. Each normal form - 1NF, 2NF, 3NF, BCNF, 4NF, 5NF - is stricter than the previous one: meeting a higher normal form implies the lower ones are satisfied. Think of them as layers of cleanliness for your tables: the deeper you go, the fewer redundancy and integrity problems you’ll have.
+
+Benefits of using Normal Forms
+
+Reduce duplicate data and wasted storage.
+Prevent insert, update, and delete anomalies.
+Improve data consistency and integrity.
+Make the schema easier to maintain and evolve.
+
+
+1)1NF
+  A table is in 1NF if it satisfies the following conditions:- 
+
+  1)Table should not contain any multivalued attributes/Each cell should have single value. eg: A phone number column must have single phone number, if user have multiple phone numbers then new table containing contact information of a user must be created
+2)Each column contains values of the same type. Like string or number.
+
+3)Each row is unique (i.e., no duplicate rows).
+
+4)Each column has a unique name.
+
+5)No repeating group of columns. Like primary_phone number, secondary_phone number because if a user dont have secondary phone number then null values will be formed in table.
+
+
+2)2NF
+  A relation is in 2NF if it satisfies the conditions of 1NF and additionally. No partial dependency exists, meaning every non-prime attribute (non-key attribute) must depend on the entire primary key, not just a part of it.
+
+Example: For a composite key (StudentID, CourseID), if the "StudentName" depends only on "StudentID" and not on the entire key, it violates 2NF. To normalize, move StudentName into a separate table where it depends only on "StudentID".
+
+
+⭐*X→Y reads  X functionally determines Y (Y is dependent on X)
+
+3)3NF: Eliminating Transitive Dependency
+A relation is in 3NF if it satisfies 2NF and additionally, there are no transitive dependencies. (In simpler terms, non-prime attributes should not depend on other non-prime attributes./A transitive dependency occurs when a non-key attribute depends on another non-key attribute, rather than depending directly on the primary key.)
+
+*Prime attribute An attribute of relation schema R is called a prime attribute of R if it is a member of some candidate key of R. Nonprime attribute An attribute of relation schema R is called a nonprime attribute of R if it is not a member of any candidate key of R(i.e: Non-Key attributes are also called Non-Prime attributes).
+
+Example: Consider a table with (StudentID, CourseID, Instructor). If Instructor depends on "CourseID", and "CourseID" depends on "StudentID", then Instructor indirectly depends on "StudentID", which violates 3NF. To resolve this, place Instructor in a separate table linked by "CourseID".
+
+*Non-key attributes are attributes that are not part of a key. Generally, most attributes are simply descriptive, and fall into this category. Consider attributes for first name, last name, birth date; usually these attributes are non-key attributes.
+
+
+
+4) Boyce-Codd Normal Form (BCNF): The Strongest Form of 3NF
+BCNF is a stricter version of 3NF where for every non-trivial functional dependency (X → Y), X must be a superkey (a unique identifier for a record in the table).
+
+Example: If a table has a dependency (StudentID, CourseID) → Instructor, but neither "StudentID" nor "CourseID" is a superkey, then it violates BCNF. To bring it into BCNF, decompose the table so that each determinant is a candidate key. Therefore the left.hand.side of each functional dependency should be superkey
+
+5) 4NF: Removing Multi-Valued Dependencies
+*Condition for Multivalued Dependencies:
+a) A->>B, for single value of A, more than one value of B exist.
+b) Table should have at-least 3 columns
+c) For this table A,B,C columns B and C should should be independent of each other.  
+
+A table is in 4NF if it is in BCNF and has no multi-valued dependencies. A multi-valued dependency occurs when one attribute determines another, and both attributes are independent of all other attributes in the table.
+
+Example: Consider a table where (StudentID, Language, Hobby) are attributes. If a student can have multiple hobbies and languages, a multi-valued dependency exists. To resolve this, split the table into separate tables for Languages and Hobbies.
+
+Problem is for StudentID 1, if 1 has Language Hindi and English & Hobby Cricket and Dance, then 4 rows of data will be created therefore we need to 2 seperate table as Studentid,Language and Studentid,Hobby.
+
+6)5NF: Eliminating Join Dependency
+5NF is achieved when a table is in 4NF and all join dependencies are removed. This form ensures that every table is fully decomposed into smaller tables that are logically connected without losing information.
+
+Example: If a table contains (StudentID, Course, Instructor) and there is a dependency where all combinations of these columns are needed for a specific relationship, you would split them into smaller tables to remove redundancy.
+
+*- If the main table can not be recreated (i.e. join dependency does not exist) it is in 5nf and should not be decomposed.
+- And if the main table can be recreated (i.e. join dependency exists) we should decompose it to be in 5nf.
+*We just try to break a table to smaller table and if we join the broken table and get exact amount of rows as per previous we can break it further but if not then it's in 5th NF
+
+
+
+
+26)Indexing
+Indexing in databases is a data structure technique used to speed up data retrieval operations by minimizing the number of disk accesses required to locate records.
+
+Stores copies of selected column (search key) values
+Maintains pointers to the actual data rows in the main table
+Allows faster searching without scanning the entire table
+structure_of_an_index_in_database
+Attributes of Indexing
+Several important attributes of indexing affect the performance and efficiency of database operations:
+
+Access Types: This refers to the type of access, such as value-based search, range access, etc.
+Access Time: Refers to the time needed to find a particular data element or set of elements.
+Insertion Time: To the time taken to find the appropriate space and insert new data.
+Deletion Time: Time taken to find an item and delete it as well as update the index structure.
+Space Overhead: It refers to the additional space required by the index.
+
+
+File Organization in Indexing
+File organization refers to how data and indexes are physically stored in memory or on disk. The following are the common types of file organizations used in indexing:
+
+1. Sequential (Ordered) File Organization
+In this type of organization, the indices are based on a sorted ordering of the values. These are generally fast and a more traditional type of storing mechanism. These Ordered or Sequential file organizations might store the data in a dense or sparse format.
+
+i. Dense Index: A dense index does not imply multiple identical key entries. Instead, a dense index maintains one index entry for every search key value present in the data file.
+
+Example: If a table contains duplicate key values, a dense index maintains an index entry for every search key value present in the data file.
+
+dense_index
+ii. Sparse Index: The index record appears only for a few items in the data file. Each item points to a block as shown. To locate a record, we find the index record with the largest search key value less than or equal to the search key value we are looking for.
+
+Access Method: To locate a record, we find the index record with the largest key value less than or equal to the search key, and then follow the pointers sequentially.
+
+Access Cost = log2(n)+1, where n is the number of blocks involved in the index file.
+
+sparse_index1
+2. Hash File Organization
+Uses a hash function to map keys to buckets.
+
+Offers fast access for exact-match queries.
+Not suitable for range queries
+
+
+
+
+
+
+
+
+
+
+
+
+
+

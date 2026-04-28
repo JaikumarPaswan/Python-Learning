@@ -135,15 +135,14 @@
 # print(chr(65))
 
 
-def maxResult(number, digit):
-    ans=[]
 
-    for i in range(len(number)):
-        if number[i]==digit:
-            t = number[0:i] + number[i+1:len(number)]
-            ans.append(t)
-    return max(ans)
+# class New:
+#     def __init__(self, name, age, roll):
+#         self.Name = name
+#         self.Age = age
+#         self.Roll = roll
 
-  
+# a=New('Jai', 12, 25)
 
-print(maxResult("123", "3"))
+# print(a.Name)
+

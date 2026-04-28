@@ -49,9 +49,12 @@ class TATA(Car):
     def color(self):
         print("--Blue--")
 
+    def fueltype(self):
+        print("E20")
+
 maruti = Maruti()
 maruti.wheel() 
-maruti.speed() #All abstract methods needs to be implemented otherwise we will get error output 
+maruti.speed() #⭐All abstract methods needs to be implemented otherwise we will get error output 
 maruti.color()
 
 
@@ -59,6 +62,7 @@ tata = TATA()
 tata.wheel()
 tata.speed()
 tata.color()
+tata.fueltype()
 
 
 
